@@ -96,6 +96,11 @@ $(document).ready(function(){
 				}]
 			}
 		],
+		current_question: 0,
+		correct_answer: null,
+		question_timer: 30,
+		question_timer_display: $('#question-timer-display'), // p
+		q_and_correct_incorrect_display: $('#q-and-correct-incorrect-display'), // h2
 
 
 		fadeInGameScreen: function () {

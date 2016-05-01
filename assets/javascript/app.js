@@ -108,6 +108,7 @@ $(document).ready(function(){
 
 			// fade in the game screen
 			$(this.game_screen).fadeIn(500);
+
 		},
 
 		startGame: function () {
@@ -132,10 +133,16 @@ $(document).ready(function(){
 
 		questionTime: function () {
 
+			// reset the question timer to 30
+			this.question_timer = 30;
+
 			// I needed to create an anonymous function to not return undefined
 			this.timer = setInterval(function () {
+
 				triviaGame.countQuestionTime();
+
 			}, 1000);
+
 		},
 
 		countQuestionTime: function () {
@@ -149,6 +156,7 @@ $(document).ready(function(){
 				clearInterval(this.timer);
 				this.guess(5);
 			} // end if
+
 		},
 
 		displayQandA: function () {
@@ -162,43 +170,65 @@ $(document).ready(function(){
 				// ...display them to the screen
 				$(this.answers_li[i]).html(this.qs_and_as[this.current_question].answers[i].answer);
 
-				// set the correct answer key to the true value from the answers.correct array
+				// set correct_answer to the index of the key to the true value from the answers.correct array
 				if (this.qs_and_as[this.current_question].answers[i].correct === true) {
 					this.correct_answer = i;
 				} // end if
 
 			} // end for loop
 
-			// set the correct answer
-			console.log(this.correct_answer);
-
 			// start the question countdown
 			triviaGame.questionTime();
 
 			// increment the current question so that the following quesiton is correctly displayed to the screen when this function is run again
 			this.current_question++;
+
 		},
 
 		guess: function (data_index) {
 
+			// stop the countdown
+			clearInterval(this.timer);
+
 			// turn the data index into an integer as it's passed as a string
-			data_index_int = parseInt(data_index);
+			var data_index_int = parseInt(data_index);
 
 			// if the player guessed correctly
 			if (data_index_int === this.correct_answer) {
 
-				console.log("yup");
+				// display a correct message
+				this.q_and_correct_incorrect_display.html("Correct");
+
 			// the player did not guess correctly
 			} else {
-				console.log("nah");
-			}
+
+				// display a correct message
+				this.q_and_correct_incorrect_display.html("Sorry, the correct answer was...");
+
+			} // end if else
+
+			// loop through the answers_li
+			for (var i = 0; i < 4; i++) {
+
+				// if the data-index on the answers_li don't match...				
+				if (parseInt(this.answers_li[i].getAttribute("data-index")) !== this.correct_answer) {
+
+					// ...fade out that li element. This should leave only the correct answer showing
+					$(this.answers_li[i]).fadeOut(300);
+
+				} // end if
+
+			} // end for loop
 			
 		}
+
 	}
 
 	// click event for th start game function
 	triviaGame.start_game.on('click', function () {
+
 		triviaGame.startGame();
+
 	});
 
 	// when the player presses one of the answers on screen
@@ -206,6 +236,7 @@ $(document).ready(function(){
 
 		// pass the clicked element's data-index value to the guess function. I need to get the attribute here instead of passing it to the function and then running getAttribute because if there's no guess I'll be evaluating no element and the getAttribute will cause my scripts to return and TypeError which will break everything and make the player sad that they can't continue playing my wonderful game
 		triviaGame.guess(this.getAttribute("data-index"));
+
 	})
 
 });

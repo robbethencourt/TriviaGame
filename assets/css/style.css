@@ -1,0 +1,21 @@
+/* animated background */
+#animated-bg-container {
+	position: fixed;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+}
+
+	#animated-bg {
+		height: 2000px;
+		width: 100%;
+		position: absolute;
+		bottom: 0px;
+		overflow: hidden;
+	}
+
+		#space {
+			height: 2000px;
+			width: 100%;
+			background: #1f2631 url(../images/earth.png) no-repeat bottom center;
+		}

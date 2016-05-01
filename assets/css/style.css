@@ -1,6 +1,49 @@
+h1, h2, h3, h4, h5 {
+	font-family: 'Droid Serif', serif;
+}
+
+
+/* start game screen */
+#start-game-screen {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	padding: 1em;
+	text-align: center;
+	background: rgba(244, 244, 244, .8);
+}
+
+	#start-game-screen {
+		padding-top: 10%;
+	}
+
+	#start-game {
+		margin: 5em 0;
+	}
+
+	#start-game-screen p {
+		font-family: 'Droid Serif', serif;
+	}
+
+
+/* game screen */
+#game-screen {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(244, 244, 244, .8);
+}
+
+
 /* animated background */
 #animated-bg-container {
+	z-index: -1;
 	position: fixed;
+	top: 0;
+	left: 0;
 	overflow: hidden;
 	height: 100%;
 	width: 100%;

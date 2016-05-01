@@ -102,6 +102,7 @@ $(document).ready(function(){
 		question_timer_display: $('#question-timer-display'), // p
 		q_and_correct_incorrect_display: $('#q-and-correct-incorrect-display'), // h2
 		answers_li: $('.answers-li'),
+		answer_timer: 10,
 
 
 		fadeInGameScreen: function () {
@@ -129,34 +130,82 @@ $(document).ready(function(){
 			
 		},
 
-		timer: null,
+		qTimer: null,
+		aTimer: null,
 
-		questionTime: function () {
+		timer: function (time_to_pass) {
 
-			// reset the question timer to 30
-			this.question_timer = 30;
+			// determine if the timer should be set to the question timer of 30 seconds or the answer timer of 10 seconds
+			if (time_to_pass === "question") {
 
-			// I needed to create an anonymous function to not return undefined
-			this.timer = setInterval(function () {
+				// reset the question timer to 30
+				this.question_timer = 30;
 
-				triviaGame.countQuestionTime();
+				// I needed to create an anonymous function to not return undefined
+				this.qTimer = setInterval(function () {
 
-			}, 1000);
+					// pass the question string to the count function so it knows what to do once it hits 0
+					triviaGame.count("question");
+
+				}, 1000);
+
+			} else {
+
+				// reset the answer timer to 10
+				this.answer_timer = 10;
+
+				// I needed to create an anonymous function to not return undefined
+				this.aTimer = setInterval(function () {
+
+					// pass the answer string to the count function so it knows what to do once it hits 0
+					triviaGame.count("answer");
+
+				}, 1000);
+
+			} // end if else
 
 		},
 
-		countQuestionTime: function () {
+		count: function (time_to_further_pass) {
 
-			// reduce the amount of time by one
-			this.question_timer--;
-			// update the screen with the current available time
-			this.question_timer_display.html(this.question_timer);
+			// determine what the timer should do based on if it's set to the question or answer timer
+			if (time_to_further_pass === "question") {
 
-			if (this.question_timer === 0) {
-				clearInterval(this.timer);
-				this.guess(5);
-			} // end if
+				// reduce the amount of time by one
+				this.question_timer--;
 
+				// update the screen with the current available time
+				this.question_timer_display.html(this.question_timer);
+
+				// once the timer hits 0...
+				if (this.question_timer === 0) {
+
+					// ...stop the timer
+					clearInterval(this.qTimer);
+
+					// call the guess function and pass it an icorrect parameter
+					this.guess(5);
+
+				} // end if
+
+			} else {
+
+				// reduce the amount of time by one
+				this.answer_timer--;
+
+				// once the timer hits 0...
+				if (this.answer_timer === 0) {
+
+					// ...stop the timer
+					clearInterval(this.aTimer);
+					this.game_screen.fadeOut(500);
+					this.game_screen.fadeIn(1500);
+					this.displayQandA();
+
+				} // end if
+
+			} // end if else
+			
 		},
 
 		displayQandA: function () {
@@ -178,7 +227,7 @@ $(document).ready(function(){
 			} // end for loop
 
 			// start the question countdown
-			triviaGame.questionTime();
+			triviaGame.timer("question");
 
 			// increment the current question so that the following quesiton is correctly displayed to the screen when this function is run again
 			this.current_question++;
@@ -188,7 +237,7 @@ $(document).ready(function(){
 		guess: function (data_index) {
 
 			// stop the countdown
-			clearInterval(this.timer);
+			clearInterval(this.qTimer);
 
 			// turn the data index into an integer as it's passed as a string
 			var data_index_int = parseInt(data_index);
@@ -214,11 +263,14 @@ $(document).ready(function(){
 				if (parseInt(this.answers_li[i].getAttribute("data-index")) !== this.correct_answer) {
 
 					// ...fade out that li element. This should leave only the correct answer showing
-					$(this.answers_li[i]).fadeOut(300);
+					$(this.answers_li[i]).html("");
 
 				} // end if
 
 			} // end for loop
+
+			// start the question countdown
+			triviaGame.timer("answer");
 			
 		}
 
@@ -227,6 +279,7 @@ $(document).ready(function(){
 	// click event for th start game function
 	triviaGame.start_game.on('click', function () {
 
+		// start the game
 		triviaGame.startGame();
 
 	});

@@ -54,7 +54,8 @@ h1, h2, h3, h4, h5 {
 
 	.answers-list li {
 		cursor: pointer;
-		padding: 2em 1em;
+		padding: 20px 1em;
+		height: 80px;
 		border: none;
 		border-bottom: 1px solid #808080;
 		background: rgba(244, 244, 244, .8);

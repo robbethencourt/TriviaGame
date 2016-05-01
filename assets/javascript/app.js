@@ -6,6 +6,7 @@ $(document).ready(function(){
 		start_game: $('#start-game'), // button
 		game_screen: $('#game-screen'), // div
 		animated_bg: $('#animated-bg'), // div
+		animated_bg_bottom: 0,
 		wins: 0,
 		total_answers: 5,
 		correct_answers: 0,
@@ -103,7 +104,7 @@ $(document).ready(function(){
 		q_display: $('#q-display'), // p
 		correct_incorrect_display: $('#correct-incorrect-display'), // p
 		answers_li: $('.answers-li'),
-		answer_timer: 10,
+		answer_timer: 5,
 
 
 		fadeInGameScreen: function () {
@@ -153,7 +154,7 @@ $(document).ready(function(){
 			} else {
 
 				// reset the answer timer to 10
-				this.answer_timer = 10;
+				this.answer_timer = 5;
 
 				// I needed to create an anonymous function to not return undefined
 				this.aTimer = setInterval(function () {
@@ -201,6 +202,7 @@ $(document).ready(function(){
 					clearInterval(this.aTimer);
 					this.game_screen.fadeOut(500);
 					this.game_screen.fadeIn(1500);
+					
 					this.displayQandA();
 
 				} // end if
@@ -251,6 +253,21 @@ $(document).ready(function(){
 
 				// display a correct message
 				this.correct_incorrect_display.html("Correct");
+
+				// animate the animate-bg div down 20% of the way
+				setTimeout(function () {
+
+					// store the amout of time to animate in a variable so it can be increased each time a correct answer is guessed. If not, then the background will not move after the first correct guess as I'll be updating the bottom by the same amount
+					var amount_to_animate = triviaGame.animated_bg_bottom + 20;
+					
+					// update the animate_bg_bottom to the amount to animate so I'm updating it correctly each time
+					triviaGame.animated_bg_bottom = amount_to_animate;
+
+					triviaGame.animated_bg.animate({
+						bottom: '-' + amount_to_animate + '%'
+					}, 1000 * 5);
+
+				}, 1000 * 5);
 
 			// the player did not guess correctly
 			} else {

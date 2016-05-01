@@ -30,8 +30,8 @@ h1, h2, h3, h4, h5 {
 	}
 
 
-/* game screen */
-#game-screen {
+/* game screen and end game screen */
+#game-screen, #end-game-screen {
 	display: none;
 	position: fixed;
 	top: 0;
@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5 {
 		text-align: center;
 	}
 
-	.answers-list li {
+	.answers-list li, #stats-list li {
 		float: left;
 		width: 50%;
 		cursor: pointer;
@@ -69,12 +69,16 @@ h1, h2, h3, h4, h5 {
 		background: rgba(244, 244, 244, .8);
 	}
 
-	.answers-list li:nth-of-type(3), .answers-list li:nth-of-type(4) {
+	.answers-list li:nth-of-type(3), .answers-list li:nth-of-type(4), .stats-list li:nth-of-type(3), .stats-list li:nth-of-type(4) {
 		border-bottom: none;
 	}
 
 	.answers-list li:hover {
 		background: rgba(244, 244, 244, .9);
+	}
+
+	#end-game-screen p, #end-game-screen h1 {
+		text-align: center;
 	}
 
 

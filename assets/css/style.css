@@ -59,6 +59,8 @@ h1, h2, h3, h4, h5 {
 	}
 
 	.answers-list li {
+		float: left;
+		width: 50%;
 		cursor: pointer;
 		padding: 32px 1em;
 		height: 80px;
@@ -67,7 +69,7 @@ h1, h2, h3, h4, h5 {
 		background: rgba(244, 244, 244, .8);
 	}
 
-	.answers-list li:last-of-type {
+	.answers-list li:nth-of-type(3), .answers-list li:nth-of-type(4) {
 		border-bottom: none;
 	}
 

@@ -47,8 +47,14 @@ h1, h2, h3, h4, h5 {
 		text-align: center;
 	}
 
-	.q-and-a h2 {
-		padding: 2em 0 3em 0;
+	#q-display {
+		padding: 2em 1em;
+		text-align: center;
+	}
+
+	#correct-incorrect-display {
+		height: 80px;
+		padding: 0 1em;
 		text-align: center;
 	}
 

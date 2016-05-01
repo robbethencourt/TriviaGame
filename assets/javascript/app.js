@@ -100,7 +100,8 @@ $(document).ready(function(){
 		correct_answer: null,
 		question_timer: 30,
 		question_timer_display: $('#question-timer-display'), // p
-		q_and_correct_incorrect_display: $('#q-and-correct-incorrect-display'), // h2
+		q_display: $('#q-display'), // p
+		correct_incorrect_display: $('#correct-incorrect-display'), // p
 		answers_li: $('.answers-li'),
 		answer_timer: 10,
 
@@ -211,7 +212,10 @@ $(document).ready(function(){
 		displayQandA: function () {
 			
 			// display the current question to the screen
-			this.q_and_correct_incorrect_display.html(this.qs_and_as[this.current_question].question);
+			this.q_display.html(this.qs_and_as[this.current_question].question);
+
+			// erase the correct_incorrect_display
+			this.correct_incorrect_display.html("");
 
 			// loop through the answers...
 			for (var i = 0; i < 4; i++) {
@@ -246,13 +250,13 @@ $(document).ready(function(){
 			if (data_index_int === this.correct_answer) {
 
 				// display a correct message
-				this.q_and_correct_incorrect_display.html("Correct");
+				this.correct_incorrect_display.html("Correct");
 
 			// the player did not guess correctly
 			} else {
 
 				// display a correct message
-				this.q_and_correct_incorrect_display.html("Sorry, the correct answer was...");
+				this.correct_incorrect_display.html("Sorry, the correct answer was...");
 
 			} // end if else
 

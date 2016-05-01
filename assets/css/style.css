@@ -1,3 +1,7 @@
+body {
+	color: #575757;
+}
+
 h1, h2, h3, h4, h5 {
 	font-family: 'Droid Serif', serif;
 }
@@ -34,8 +38,35 @@ h1, h2, h3, h4, h5 {
 	left: 0;
 	height: 100%;
 	width: 100%;
+	padding: 2em 0;
 	background: rgba(244, 244, 244, .8);
 }
+
+	.question-timer {
+		font-size: 2em;
+		text-align: center;
+	}
+
+	.q-and-a h2 {
+		padding: 2em 0 3em 0;
+		text-align: center;
+	}
+
+	.answers-list li {
+		cursor: pointer;
+		padding: 2em 1em;
+		border: none;
+		border-bottom: 1px solid #808080;
+		background: rgba(244, 244, 244, .8);
+	}
+
+	.answers-list li:last-of-type {
+		border-bottom: none;
+	}
+
+	.answers-list li:hover {
+		background: rgba(244, 244, 244, .9);
+	}
 
 
 /* animated background */
@@ -55,10 +86,13 @@ h1, h2, h3, h4, h5 {
 		position: absolute;
 		bottom: 0px;
 		overflow: hidden;
+		background: #575757;
 	}
 
 		#space {
-			height: 2000px;
+			height: 500px;
 			width: 100%;
-			background: #1f2631 url(../images/earth.png) no-repeat bottom center;
+			position: absolute;
+			bottom: 0;
+			background: url(../images/earth.png) no-repeat bottom center;
 		}

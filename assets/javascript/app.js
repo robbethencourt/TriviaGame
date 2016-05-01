@@ -187,6 +187,8 @@ $(document).ready(function(){
 
 					// call the guess function and pass it an icorrect parameter
 					this.guess(5);
+					
+					
 
 				} // end if
 
@@ -203,7 +205,13 @@ $(document).ready(function(){
 					this.game_screen.fadeOut(500);
 					this.game_screen.fadeIn(1500);
 					
-					this.displayQandA();
+					// only run the displayQandA function if there are more questions left to ask
+					if (this.current_question < 5) {
+
+						this.displayQandA();
+
+					} // end if
+					
 
 				} // end if
 
@@ -259,7 +267,7 @@ $(document).ready(function(){
 
 					// store the amout of time to animate in a variable so it can be increased each time a correct answer is guessed. If not, then the background will not move after the first correct guess as I'll be updating the bottom by the same amount
 					var amount_to_animate = triviaGame.animated_bg_bottom + 20;
-					
+
 					// update the animate_bg_bottom to the amount to animate so I'm updating it correctly each time
 					triviaGame.animated_bg_bottom = amount_to_animate;
 
@@ -290,8 +298,13 @@ $(document).ready(function(){
 
 			} // end for loop
 
-			// start the question countdown
-			triviaGame.timer("answer");
+			// run the answer timer as long as there are questions left to ask
+			if (this.current_question < 5) {
+				
+				// start the question countdown
+				triviaGame.timer("answer");
+
+			} // end if
 			
 		}
 

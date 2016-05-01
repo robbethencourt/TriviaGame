@@ -121,10 +121,11 @@ $(document).ready(function(){
 				triviaGame.fadeInGameScreen();
 			}, 1000);
 
-			// Start the question countdown once the game screen appears
+			// Start the displaying the questions, answers and the countdown once the game screen appears
 			setTimeout(function () {
-				triviaGame.questionTime();
-			}, 1000)
+				triviaGame.displayQandA();
+			}, 1000);
+			
 		},
 
 		timer: null,
@@ -146,23 +147,65 @@ $(document).ready(function(){
 
 			if (this.question_timer === 0) {
 				clearInterval(this.timer);
-				this.guess();
-			}
+				this.guess(5);
+			} // end if
 		},
 
 		displayQandA: function () {
 			
-			q_and_correct_incorrect_display.html(qs_and_as[current_question].question);
+			// display the current question to the screen
+			this.q_and_correct_incorrect_display.html(this.qs_and_as[this.current_question].question);
+
+			// loop through the answers...
+			for (var i = 0; i < 4; i++) {
+
+				// ...display them to the screen
+				$(this.answers_li[i]).html(this.qs_and_as[this.current_question].answers[i].answer);
+
+				// set the correct answer key to the true value from the answers.correct array
+				if (this.qs_and_as[this.current_question].answers[i].correct === true) {
+					this.correct_answer = i;
+				} // end if
+
+			} // end for loop
+
+			// set the correct answer
+			console.log(this.correct_answer);
+
+			// start the question countdown
+			triviaGame.questionTime();
+
+			// increment the current question so that the following quesiton is correctly displayed to the screen when this function is run again
+			this.current_question++;
 		},
 
-		guess: function () {
-			console.log("yo");
+		guess: function (data_index) {
+
+			// turn the data index into an integer as it's passed as a string
+			data_index_int = parseInt(data_index);
+
+			// if the player guessed correctly
+			if (data_index_int === this.correct_answer) {
+
+				console.log("yup");
+			// the player did not guess correctly
+			} else {
+				console.log("nah");
+			}
+			
 		}
 	}
 
 	// click event for th start game function
 	triviaGame.start_game.on('click', function () {
 		triviaGame.startGame();
+	});
+
+	// when the player presses one of the answers on screen
+	triviaGame.answers_li.on('click', function () {
+
+		// pass the clicked element's data-index value to the guess function. I need to get the attribute here instead of passing it to the function and then running getAttribute because if there's no guess I'll be evaluating no element and the getAttribute will cause my scripts to return and TypeError which will break everything and make the player sad that they can't continue playing my wonderful game
+		triviaGame.guess(this.getAttribute("data-index"));
 	})
 
 });

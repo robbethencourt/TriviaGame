@@ -227,12 +227,12 @@ $(document).ready(function(){
 
 					// set a timeout so that the delay allows the game screen to fade out while the background animates and the game screen gets repopulated with the new question
 					setTimeout(function () {
-						
-						// fade the game screen back in
-						triviaGame.game_screen.fadeIn(500);
 					
 						// only run the displayQandA function if there are more questions left to ask
 						if (triviaGame.current_question < 5) {
+
+							// fade the game screen back in
+							triviaGame.game_screen.fadeIn(500);
 
 							triviaGame.displayQandA();
 

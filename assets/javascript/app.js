@@ -104,7 +104,7 @@ $(document).ready(function(){
 		q_display: $('#q-display'), // p
 		correct_incorrect_display: $('#correct-incorrect-display'), // p
 		answers_li: $('.answers-li'),
-		answer_timer: 5,
+		answer_timer: 3,
 		end_game_screen: $('#end-game-screen'),
 		all_q_correct: $('#all-q-correct'),
 		reset_game: $('#reset-game'),
@@ -171,6 +171,7 @@ $(document).ready(function(){
 
 			} else {
 
+				// answer timer
 				// reset the answer timer to 3
 				this.answer_timer = 3;
 
@@ -213,6 +214,7 @@ $(document).ready(function(){
 
 			} else {
 
+				// answer count
 				// reduce the amount of time by one
 				this.answer_timer--;
 
@@ -222,18 +224,27 @@ $(document).ready(function(){
 					// ...stop the timer
 					clearInterval(this.aTimer);
 					this.game_screen.fadeOut(500);
-					this.game_screen.fadeIn(1500);
+
+					// set a timeout so that the delay allows the game screen to fade out while the background animates and the game screen gets repopulated with the new question
+					setTimeout(function () {
+						
+						// fade the game screen back in
+						triviaGame.game_screen.fadeIn(500);
 					
-					// only run the displayQandA function if there are more questions left to ask
-					if (this.current_question < 5) {
+						// only run the displayQandA function if there are more questions left to ask
+						if (triviaGame.current_question < 5) {
 
-						this.displayQandA();
+							triviaGame.displayQandA();
 
-					} else {
+						} else {
 
-						 // display the end game screen
-						 this.displayEndGameScreen();
-					}					
+							 // display the end game screen
+							 triviaGame.displayEndGameScreen();
+							 
+						} // end if else
+
+					}, 1000 * 3);
+
 
 				} // end if
 
@@ -287,7 +298,7 @@ $(document).ready(function(){
 				// display a correct message
 				this.correct_incorrect_display.html("Correct");
 
-				// animate the animate-bg div down 20% of the way
+				// animate the animate-bg div down 20% of the way. Using setTimeout here so tha the background won't animate until the game screen has faded out.
 				setTimeout(function () {
 
 					// store the amout of time to animate in a variable so it can be increased each time a correct answer is guessed. If not, then the background will not move after the first correct guess as I'll be updating the bottom by the same amount
@@ -300,7 +311,7 @@ $(document).ready(function(){
 						bottom: '-' + amount_to_animate + '%'
 					}, 1000 * 5);
 
-				}, 1000 * 5);
+				}, 1000 * 3);
 
 			// the player did not guess correctly
 			} else {

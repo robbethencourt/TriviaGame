@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5 {
 	font-family: 'Droid Serif', serif;
 }
 
+p {
+	line-height: 1.7em;
+}
+
 
 /* start game screen */
 #start-game-screen {
@@ -21,6 +25,10 @@ h1, h2, h3, h4, h5 {
 
 	#start-game-screen {
 		padding-top: 10%;
+	}
+
+	.translation {
+		font-style: italic;
 	}
 
 	#start-game {
@@ -42,6 +50,11 @@ h1, h2, h3, h4, h5 {
 	width: 100%;
 	padding: 2em 0;
 	background: rgba(244, 244, 244, .8);
+}
+
+#end-game-screen {
+	padding: 2em 1em;
+	text-align: center;
 }
 
 	.question-timer {
@@ -79,8 +92,12 @@ h1, h2, h3, h4, h5 {
 		background: rgba(244, 244, 244, .9);
 	}
 
-	#end-game-screen p, #end-game-screen h1 {
-		text-align: center;
+	#reset-game {
+		margin: 2em 0;
+	}
+
+	.begin-stats {
+		margin-top: 3em;
 	}
 
 

@@ -36,7 +36,7 @@
 		<div class="q-and-a">
 			<p id="q-display">This is where the trivia question goes?</p>
 			<p id="correct-incorrect-display"></p>
-			<ul class="list-group answers-list">
+			<ul id="answers-ul" class="list-group answers-list">
 				<li class="list-group-item answers-li" data-index="0">answer 1</li>
 				<li class="list-group-item answers-li" data-index="1">answer 2</li>
 				<li class="list-group-item answers-li" data-index="2">answer 3</li>
@@ -49,13 +49,16 @@
 	<div id="end-game-screen">
 		<p>Thanks for playing</p>
 		<h1>LE VOYAGE DANS LA LUNE</h1>
-		<p>Blow are your stats</p>
+		<p>Below are your stats</p>
 		<ul class="list-group stats-list">
-			<li>Correct Answers: <span id="correct-answers"></span></li>
-			<li>Incorrect Answers: <span id="incorrect-answers"></span></li>
-			<li>Unanswered: <span id="unanswered"></span></li>
+			<li>Correct Answers: <span id="total-correct-answers"></span></li>
+			<li>Incorrect Answers: <span id="total-incorrect-answers"></span></li>
+			<li>Unanswered: <span id="total-unanswered"></span></li>
 		</ul>
 		<p id="all-q-correct"></p>
+		<p>You can play the game again by pressing the button below, or you can watch "A Trip to the Moon" on YouTube with the button further below.</p>
+		<button class="btn-default" id="reset-game">Take the Trip Again</button>
+		<p><a class="btn-danger" href="">YouTube</p>
 	</div>
 
 	<!-- animated background -->

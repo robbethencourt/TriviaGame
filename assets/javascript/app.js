@@ -105,7 +105,9 @@ $(document).ready(function(){
 		correct_incorrect_display: $('#correct-incorrect-display'), // p
 		answers_li: $('.answers-li'),
 		answer_timer: 5,
-
+		end_game_screen: $('#end-game-screen'),
+		all_q_correct: $('#all-q-correct'),
+		reset_game: $('#reset-game'),
 
 		fadeInGameScreen: function () {
 
@@ -187,8 +189,9 @@ $(document).ready(function(){
 
 					// call the guess function and pass it an icorrect parameter
 					this.guess(5);
-					
-					
+
+					// increment the unanswered key by 1
+					this.unanswered++;
 
 				} // end if
 
@@ -210,8 +213,11 @@ $(document).ready(function(){
 
 						this.displayQandA();
 
-					} // end if
-					
+					} else {
+
+						 // display the end game screen
+						 this.displayEndGameScreen();
+					}					
 
 				} // end if
 
@@ -259,6 +265,9 @@ $(document).ready(function(){
 			// if the player guessed correctly
 			if (data_index_int === this.correct_answer) {
 
+				// increment correct_answers by 1
+				this.correct_answers++;
+
 				// display a correct message
 				this.correct_incorrect_display.html("Correct");
 
@@ -283,6 +292,14 @@ $(document).ready(function(){
 				// display a correct message
 				this.correct_incorrect_display.html("Sorry, the correct answer was...");
 
+				// check to see that an answer was given or if it was left unanswered. If there was no answer given...
+				if (data_index < 5) {
+
+					// ...increment the incorrect answers key by 1
+					this.incorrect_answers++;
+
+				}
+
 			} // end if else
 
 			// loop through the answers_li
@@ -299,13 +316,33 @@ $(document).ready(function(){
 			} // end for loop
 
 			// run the answer timer as long as there are questions left to ask
-			if (this.current_question < 5) {
+			if (this.current_question < 6) {
 				
 				// start the question countdown
 				triviaGame.timer("answer");
 
 			} // end if
 			
+		},
+
+		displayEndGameScreen: function () {
+
+			// add the correct, incorrect and unanswered amounts to the stats-ul element
+			$(this.total_correct_answers).html(this.correct_answers);
+			$(this.total_incorrect_answers).html(this.incorrect_answers);
+			$(this.total_unanswered).html(this.unanswered);
+
+			// if the player got all 5 questions correct...
+			if (this.correct_answers === 5) {
+
+				// ...display a congratulatory message for getting all 5 questions correct
+				$(this.all_q_correct).html("Congratulations! You got all 5 questions correct");
+
+			} // end if
+			
+			// fade in the end game screen
+			$(this.end_game_screen).fadeIn(500);
+
 		}
 
 	}
@@ -324,6 +361,14 @@ $(document).ready(function(){
 		// pass the clicked element's data-index value to the guess function. I need to get the attribute here instead of passing it to the function and then running getAttribute because if there's no guess I'll be evaluating no element and the getAttribute will cause my scripts to return and TypeError which will break everything and make the player sad that they can't continue playing my wonderful game
 		triviaGame.guess(this.getAttribute("data-index"));
 
-	})
+	});
+
+	// reset the game when the player presses the #reset-game button
+	triviaGame.reset_game.on('click', function () {
+
+		// calling the start game to reset the game without the need for the title screen and going directly to the first question
+		triviaGame.startGame();
+
+	});
 
 });

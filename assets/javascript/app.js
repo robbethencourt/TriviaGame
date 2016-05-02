@@ -118,8 +118,24 @@ $(document).ready(function(){
 
 		startGame: function () {
 
-			//fade out the start game screen
+			// reset the key values
+			this.animated_bg_bottom = 0;
+			this.total_answers = 5;
+			this.correct_answers = 0;
+			this.incorrect_answers = 0;
+			this.unanswered = 0;
+			this.current_question = 0;
+			this.correct_answer = null;
+
+			this.animated_bg.animate({
+				bottom: '0%'
+			}, 1000 * 5);
+
+			// fade out the start game screen
 			$(this.start_game_screen).fadeOut(500);
+
+			// fade out the end game screen
+			$(this.end_game_screen).fadeOut(500);
 
 			// delay the game screen after the start game screen has faded out
 			setTimeout(function () {
@@ -155,8 +171,8 @@ $(document).ready(function(){
 
 			} else {
 
-				// reset the answer timer to 10
-				this.answer_timer = 5;
+				// reset the answer timer to 3
+				this.answer_timer = 3;
 
 				// I needed to create an anonymous function to not return undefined
 				this.aTimer = setInterval(function () {
@@ -326,6 +342,9 @@ $(document).ready(function(){
 		},
 
 		displayEndGameScreen: function () {
+
+			// fade out the game screen
+			$(this.game_screen).fadeOut(500);
 
 			// add the correct, incorrect and unanswered amounts to the stats-ul element
 			$(this.total_correct_answers).html(this.correct_answers);

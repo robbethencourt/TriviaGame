@@ -131,6 +131,16 @@ p {
 			filter: grayscale(100%);
 		}
 
+		#moon-landing {
+			height: 1000px;
+			width: 100%;
+			position: absolute;
+			bottom: 1000px;
+			background: url(../images/moon-landing.png) no-repeat bottom center;
+			-webkit-filter: grayscale(100%);
+			filter: grayscale(100%);
+		}
+
 
 #grain {
 	z-index: -1;

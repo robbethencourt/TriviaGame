@@ -121,14 +121,17 @@ p {
 		background: #575757;
 	}
 
-		#mountains-sky {
+		.b-and-w {
+			-webkit-filter: grayscale(100%);
+			filter: grayscale(100%);
+		}
+
+		#triangulated {
 			height: 1000px;
 			width: 100%;
 			position: absolute;
-			bottom: 0;
-			background: url(../images/mountains-sky.png) no-repeat bottom center;
-			-webkit-filter: grayscale(100%);
-			filter: grayscale(100%);
+			bottom: 2000px;
+			background: url(../images/triangulated.jpg) no-repeat bottom center;
 		}
 
 		#moon-landing {
@@ -137,8 +140,14 @@ p {
 			position: absolute;
 			bottom: 1000px;
 			background: url(../images/moon-landing.png) no-repeat bottom center;
-			-webkit-filter: grayscale(100%);
-			filter: grayscale(100%);
+		}
+
+		#mountains-sky {
+			height: 1000px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			background: url(../images/mountains-sky.png) no-repeat bottom center;
 		}
 
 

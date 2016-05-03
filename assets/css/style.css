@@ -113,12 +113,13 @@ p {
 }
 
 	#animated-bg {
-		height: 7000px;
+		height: 5000px;
 		width: 100%;
 		position: absolute;
 		bottom: 0px;
 		overflow: hidden;
 		background: #575757;
+		background: #575757 url(../images/animated-bg.jpg) no-repeat bottom center;
 	}
 
 		.b-and-w {

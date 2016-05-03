@@ -127,9 +127,11 @@ $(document).ready(function(){
 			this.current_question = 0;
 			this.correct_answer = null;
 
-			this.animated_bg.animate({
-				bottom: '0%'
-			}, 1000 * 5);
+			this.animated_bg.removeClass('animate-bg-1 animate-bg-2 animate-bg-3 animate-bg-4 animate-bg-5');
+
+			//this.animated_bg.animate({
+			//	bottom: '0%'
+			//}, 1000 * 5);
 
 			// fade out the start game screen
 			$(this.start_game_screen).fadeOut(500);
@@ -302,14 +304,18 @@ $(document).ready(function(){
 				setTimeout(function () {
 
 					// store the amout of time to animate in a variable so it can be increased each time a correct answer is guessed. If not, then the background will not move after the first correct guess as I'll be updating the bottom by the same amount
-					var amount_to_animate = triviaGame.animated_bg_bottom + 1000;
+					var amount_to_animate = triviaGame.animated_bg_bottom + 1;
 
 					// update the animate_bg_bottom to the amount to animate so I'm updating it correctly each time
 					triviaGame.animated_bg_bottom = amount_to_animate;
 
-					triviaGame.animated_bg.animate({
-						bottom: '-' + amount_to_animate + 'px'
-					}, 1000 * 5);
+
+
+					$(triviaGame.animated_bg).addClass('animate-bg-' + amount_to_animate);
+
+					//triviaGame.animated_bg.animate({
+					//	bottom: '-' + amount_to_animate + 'px'
+					//}, 1000 * 5);
 
 				}, 1000 * 3);
 

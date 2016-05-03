@@ -115,11 +115,41 @@ p {
 	#animated-bg {
 		height: 5000px;
 		width: 100%;
-		position: absolute;
-		bottom: 0px;
+		
 		overflow: hidden;
 		background: #575757;
 		background: #575757 url(../images/animated-bg.jpg) no-repeat bottom center;
+	}
+
+	.animate-bg-0 {
+		position: absolute;
+		transition: 5s;
+		bottom: 0px;
+	}
+
+	.animate-bg-1 {
+		transition: 5s;
+		bottom: -1000px;
+	}
+
+	.animate-bg-2 {
+		transition: 5s;
+		bottom: -2000px;
+	}
+
+	.animate-bg-3 {
+		transition: 5s;
+		bottom: -3000px;
+	}
+
+	.animate-bg-4 {
+		transition: 5s;
+		bottom: -4000px;
+	}
+
+	.animate-bg-5 {
+		transition: 5s;
+		bottom: -5000px;
 	}
 
 		.b-and-w {

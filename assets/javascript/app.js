@@ -103,11 +103,35 @@ $(document).ready(function(){
 		question_timer_display: $('#question-timer-display'), // p
 		q_display: $('#q-display'), // p
 		correct_incorrect_display: $('#correct-incorrect-display'), // p
-		answers_li: $('.answers-li'),
+		//answers_li: $('.answers-li'),
+		answers_ul: $('#answers-ul'),
+		answers_li: [],
+		answers_to_show: 4,
 		answer_timer: 3,
 		end_game_screen: $('#end-game-screen'),
 		all_q_correct: $('#all-q-correct'),
 		restart_game: $('#restart-game'),
+
+		addAnswersLi: function () {
+
+			// loop through the number of answers to display			
+			for (var i = 0; i < this.answers_to_show; i++) {
+
+				// create a li element
+				var li_added = document.createElement('li');
+
+				// add the class and data-index set to the current i value
+				$(li_added).addClass('list-group-item answers-li').attr('data-index', i);
+
+				// push the li elements created into the array
+				this.answers_li.push(li_added);
+				
+				// append the created li elements wiht added classes and data-index to the ul element
+				$(this.answers_ul).append(li_added);
+
+			} // end for loop
+
+		},
 
 		fadeInGameScreen: function () {
 
@@ -401,7 +425,7 @@ $(document).ready(function(){
 
 		restart_buttons: $('#restart-buttons'),
 		color_restart_div: $('<div class="col-xs-6"></div>'),
-		color_restart: $('<p></p>').append('<button class="btn btn-default" id="color-restart">Restart In Color</buttton>'),
+		color_restart: $('<p></p>').append('<button class="btn btn-default" id="color-restart">Take the Trip In Color</buttton>'),
 
 		youtube_buttons: $('#youtube-buttons'),
 		color_youtube_div: $('<div class="col-xs-6"></div>'),
@@ -444,6 +468,9 @@ $(document).ready(function(){
 
 	}
 
+	// add the list elements to the screen once the page loads
+	triviaGame.addAnswersLi();
+
 	// click event for th start game function
 	triviaGame.start_game.on('click', function () {
 
@@ -452,8 +479,10 @@ $(document).ready(function(){
 
 	});
 
+
+	console.log(triviaGame.answers_li);
 	// when the player presses one of the answers on screen
-	triviaGame.answers_li.on('click', function () {
+	triviaGame.answers_ul.on('click', '.answers-li', function () {
 
 		// pass the clicked element's data-index value to the guess function. I need to get the attribute here instead of passing it to the function and then running getAttribute because if there's no guess I'll be evaluating no element and the getAttribute will cause my scripts to return and TypeError which will break everything and make the player sad that they can't continue playing my wonderful game
 		triviaGame.guess(this.getAttribute("data-index"));

@@ -374,10 +374,31 @@ $(document).ready(function(){
 				// ...display a congratulatory message for getting all 5 questions correct
 				$(this.all_q_correct).html("Congratulations! You got all 5 questions correct");
 
+				// update the wins by one
+				this.wins++;
+
+				// run the ability to select to play with colors if the player has won the game with all 5 questions at least once
+				if (this.wins === 1) {
+
+					this.colorBackground();
+
+				} // end if
+
 			} // end if
 			
 			// fade in the end game screen
 			$(this.end_game_screen).fadeIn(500);
+
+		},
+
+		color_restart: $('<button id="color_restart">Restart In Color</buttton>');
+		reset_buttons: $('#reset-buttons');
+		color_youtube: $('<p><a class="btn btn-danger" href="https://www.youtube.com/watch?v=BNLZntSdyKE" target="_blank">YouTube Color Version</a></p>');
+		youtube_buttons: $('#youtube-buttons');
+
+		colorBackground: function () {
+			
+
 
 		}
 

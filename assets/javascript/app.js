@@ -107,7 +107,7 @@ $(document).ready(function(){
 		answer_timer: 3,
 		end_game_screen: $('#end-game-screen'),
 		all_q_correct: $('#all-q-correct'),
-		reset_game: $('#reset-game'),
+		restart_game: $('#restart-game'),
 
 		fadeInGameScreen: function () {
 
@@ -391,14 +391,23 @@ $(document).ready(function(){
 
 		},
 
-		color_restart: $('<button id="color_restart">Restart In Color</buttton>'),
-		reset_buttons: $('#reset-buttons'),
-		color_youtube: $('<p><a class="btn btn-danger" href="https://www.youtube.com/watch?v=BNLZntSdyKE" target="_blank">YouTube Color Version</a></p>'),
+		restart_buttons: $('#restart-buttons'),
+		color_restart_div: $('<div class="col-xs-6"></div>'),
+		color_restart: $('<p></p>').append('<button class="btn btn-default" id="color-restart">Restart In Color</buttton>'),
+
 		youtube_buttons: $('#youtube-buttons'),
+		color_youtube_div: $('<div class="col-xs-6"></div>'),
+		color_youtube: $('<p><a class="btn btn-danger" href="https://www.youtube.com/watch?v=BNLZntSdyKE" target="_blank">YouTube Color Version</a></p>'),
 
 		colorBackground: function () {
 			
+			this.restart_buttons.removeClass('col-xs-12').addClass('col-xs-6');
+			this.color_restart_div.insertAfter(this.restart_buttons);
+			this.color_restart_div.append(this.color_restart);
 
+			this.youtube_buttons.removeClass('col-xs-12').addClass('col-xs-6');
+			this.color_youtube_div.insertAfter(this.youtube_buttons);
+			this.color_youtube_div.append(this.color_youtube);
 
 		}
 
@@ -420,10 +429,10 @@ $(document).ready(function(){
 
 	});
 
-	// reset the game when the player presses the #reset-game button
-	triviaGame.reset_game.on('click', function () {
+	// restart the game when the player presses the #restart-game button
+	triviaGame.restart_game.on('click', function () {
 
-		// calling the start game to reset the game without the need for the title screen and going directly to the first question
+		// calling the start game to restart the game without the need for the title screen and going directly to the first question
 		triviaGame.startGame();
 
 	});

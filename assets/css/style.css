@@ -12,6 +12,10 @@ p {
 	line-height: 1.7em;
 }
 
+button {
+	font-family: 'Droid Serif', serif;
+}
+
 
 /* start game screen */
 #start-game-screen {
@@ -57,8 +61,18 @@ p {
 	background: rgba(5, 5, 5, .8);
 }
 
+
+	#q-display, .youtube-message {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.youtube-message {
+		margin-bottom: 2em;
+	}
+
 #end-game-screen {
-	padding: 2em 1em;
 	text-align: center;
 }
 
@@ -94,12 +108,26 @@ p {
 		background: rgba(5, 5, 5, .9);
 	}
 
-	#reset-game {
+	#restart-buttons, #color-restart {
 		margin: 2em 0;
 	}
 
 	.begin-stats {
 		margin-top: 3em;
+	}
+
+	#color-restart {
+		border: none;
+		color: #fff;
+		font-weight: bold;
+		background: rgba(232,125,116,1);
+		background: -moz-linear-gradient(left, rgba(232,125,116,1) 0%, rgba(232,125,116,1) 2%, rgba(75,214,142,1) 28%, rgba(93,209,244,1) 50%, rgba(249,175,245,1) 75%, rgba(247,247,57,1) 98%, rgba(247,247,57,1) 100%);
+		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(232,125,116,1)), color-stop(2%, rgba(232,125,116,1)), color-stop(28%, rgba(75,214,142,1)), color-stop(50%, rgba(93,209,244,1)), color-stop(75%, rgba(249,175,245,1)), color-stop(98%, rgba(247,247,57,1)), color-stop(100%, rgba(247,247,57,1)));
+		background: -webkit-linear-gradient(left, rgba(232,125,116,1) 0%, rgba(232,125,116,1) 2%, rgba(75,214,142,1) 28%, rgba(93,209,244,1) 50%, rgba(249,175,245,1) 75%, rgba(247,247,57,1) 98%, rgba(247,247,57,1) 100%);
+		background: -o-linear-gradient(left, rgba(232,125,116,1) 0%, rgba(232,125,116,1) 2%, rgba(75,214,142,1) 28%, rgba(93,209,244,1) 50%, rgba(249,175,245,1) 75%, rgba(247,247,57,1) 98%, rgba(247,247,57,1) 100%);
+		background: -ms-linear-gradient(left, rgba(232,125,116,1) 0%, rgba(232,125,116,1) 2%, rgba(75,214,142,1) 28%, rgba(93,209,244,1) 50%, rgba(249,175,245,1) 75%, rgba(247,247,57,1) 98%, rgba(247,247,57,1) 100%);
+		background: linear-gradient(to right, rgba(232,125,116,1) 0%, rgba(232,125,116,1) 2%, rgba(75,214,142,1) 28%, rgba(93,209,244,1) 50%, rgba(249,175,245,1) 75%, rgba(247,247,57,1) 98%, rgba(247,247,57,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e87d74', endColorstr='#f7f739', GradientType=1 );
 	}
 
 
@@ -192,4 +220,22 @@ p {
 	height: 100%;
 	width: 100%;
 	background: url(../images/grain.png);
+}
+
+
+/* Media Querries */
+@media (min-width: 700px) { 
+
+	#q-display, .youtube-message {
+		width: 75%;
+	}
+
+}
+
+@media (min-width: 1500px) { 
+
+	#q-display, .youtube-message {
+		width: 65%;
+	}
+
 }

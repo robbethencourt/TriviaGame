@@ -116,7 +116,15 @@ $(document).ready(function(){
 
 		},
 
-		startGame: function () {
+		startGame: function (color) {
+
+			// if the player chooses to play in black and white the restart button will pass the 'b-and-w' string and we will also check that the 'b-and-w' class ins't already applied to the animated-bg div
+			if (color === 'b-and-w' && !(this.animated_bg.hasClass('b-and-w'))) {
+
+				// add the black and white class to the animated-bg div
+				this.animated_bg.addClass('b-and-w');
+
+			} // end if
 
 			// reset the key values
 			this.animated_bg_bottom = 0;
@@ -380,7 +388,7 @@ $(document).ready(function(){
 				// run the ability to select to play with colors if the player has won the game with all 5 questions at least once
 				if (this.wins === 1) {
 
-					this.colorBackground();
+					this.colorBackgroundButtons();
 
 				} // end if
 
@@ -397,17 +405,40 @@ $(document).ready(function(){
 
 		youtube_buttons: $('#youtube-buttons'),
 		color_youtube_div: $('<div class="col-xs-6"></div>'),
-		color_youtube: $('<p><a class="btn btn-danger" href="https://www.youtube.com/watch?v=BNLZntSdyKE" target="_blank">YouTube Color Version</a></p>'),
+		color_youtube: $('<p><a class="btn btn-danger" href="https://www.youtube.com/watch?v=EvhTo2-0BQg" target="_blank">YouTube Color Version</a></p>'),
+
+		colorBackgroundButtons: function () {
+			
+			// adding the color restart button
+			// add a bootstrap class to half the size of the div holding the restart button
+			this.restart_buttons.removeClass('col-xs-12').addClass('col-xs-6');
+			// insert the color restart div after the restart buttons div
+			this.color_restart_div.insertAfter(this.restart_buttons);
+			// append the color restart button to the color restart div
+			this.color_restart_div.append(this.color_restart);
+
+			// adding the color youtube link
+			// add a boot strap class to half the size of the div holding the youtube button
+			this.youtube_buttons.removeClass('col-xs-12').addClass('col-xs-6');
+			// insert the color youtube div after the youtube buttons div
+			this.color_youtube_div.insertAfter(this.youtube_buttons);
+			// append the color youtube link to the color youtube buttons div
+			this.color_youtube_div.append(this.color_youtube);
+
+		},
 
 		colorBackground: function () {
 			
-			this.restart_buttons.removeClass('col-xs-12').addClass('col-xs-6');
-			this.color_restart_div.insertAfter(this.restart_buttons);
-			this.color_restart_div.append(this.color_restart);
+			// if the black and white calss is applied to the animated-bg div
+			if (this.animated_bg.hasClass('b-and-w')) {
 
-			this.youtube_buttons.removeClass('col-xs-12').addClass('col-xs-6');
-			this.color_youtube_div.insertAfter(this.youtube_buttons);
-			this.color_youtube_div.append(this.color_youtube);
+				// remove the class
+				this.animated_bg.removeClass('b-and-w');
+
+			}
+
+			// restart the game
+			this.startGame();
 
 		}
 
@@ -433,7 +464,16 @@ $(document).ready(function(){
 	triviaGame.restart_game.on('click', function () {
 
 		// calling the start game to restart the game without the need for the title screen and going directly to the first question
-		triviaGame.startGame();
+		// we're passing the 'b-and-w' string so we know that the player has choosen to play without color and we can pass that to the startGame function and it can then add the b-and-w class
+		triviaGame.startGame('b-and-w');
+
+	});
+
+	// I need to call the click event on an element that already exists, and then I can pass the actual element that is clicked as a second parameter. Thanks StackOverflow
+	$('#end-game-screen').on('click', '#color-restart', function () {
+		
+		// call the colorBackground function
+		triviaGame.colorBackground();
 
 	});
 

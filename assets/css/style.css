@@ -145,7 +145,6 @@ button {
 	#animated-bg {
 		height: 5000px;
 		width: 100%;
-		
 		overflow: hidden;
 		background: #575757;
 		background: #575757 url(../images/animated-bg.jpg) no-repeat bottom center;
@@ -185,30 +184,6 @@ button {
 		.b-and-w {
 			-webkit-filter: grayscale(100%);
 			filter: grayscale(100%);
-		}
-
-		#triangulated {
-			height: 1000px;
-			width: 100%;
-			position: absolute;
-			bottom: 2000px;
-			background: url(../images/triangulated.jpg) no-repeat bottom center;
-		}
-
-		#moon-landing {
-			height: 1000px;
-			width: 100%;
-			position: absolute;
-			bottom: 1000px;
-			background: url(../images/moon-landing.png) no-repeat bottom center;
-		}
-
-		#mountains-sky {
-			height: 1000px;
-			width: 100%;
-			position: absolute;
-			bottom: 0;
-			background: url(../images/mountains-sky.png) no-repeat bottom center;
 		}
 
 

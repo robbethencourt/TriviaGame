@@ -391,10 +391,10 @@ $(document).ready(function(){
 
 		},
 
-		color_restart: $('<button id="color_restart">Restart In Color</buttton>');
-		reset_buttons: $('#reset-buttons');
-		color_youtube: $('<p><a class="btn btn-danger" href="https://www.youtube.com/watch?v=BNLZntSdyKE" target="_blank">YouTube Color Version</a></p>');
-		youtube_buttons: $('#youtube-buttons');
+		color_restart: $('<button id="color_restart">Restart In Color</buttton>'),
+		reset_buttons: $('#reset-buttons'),
+		color_youtube: $('<p><a class="btn btn-danger" href="https://www.youtube.com/watch?v=BNLZntSdyKE" target="_blank">YouTube Color Version</a></p>'),
+		youtube_buttons: $('#youtube-buttons'),
 
 		colorBackground: function () {
 			

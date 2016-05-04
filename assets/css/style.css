@@ -18,13 +18,19 @@ p {
 	position: fixed;
 	height: 100%;
 	width: 100%;
-	padding: 1em;
 	text-align: center;
 	background: rgba(5, 5, 5, .8);
 }
 
-	#start-game-screen {
-		padding-top: 10%;
+	.border {
+		height: 94%;
+		width: 96%;
+		margin: 2%;
+		border: 1px solid #808080;
+	}
+
+	#start-game-screen h1 {
+		padding-top: 12%;
 	}
 
 	.translation {
@@ -48,7 +54,6 @@ p {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	padding: 2em 0;
 	background: rgba(5, 5, 5, .8);
 }
 
@@ -58,6 +63,7 @@ p {
 }
 
 	.question-timer {
+		padding-top: 1em;
 		font-size: 2em;
 		text-align: center;
 	}
@@ -73,19 +79,15 @@ p {
 		text-align: center;
 	}
 
-	.answers-list li, #stats-list li {
+	.answers-list li {
 		float: left;
 		width: 50%;
 		cursor: pointer;
 		padding: 32px 1em;
 		height: 80px;
 		border: none;
-		border-bottom: 1px solid #808080;
+		font-family: 'Droid Serif', serif;
 		background: rgba(5, 5, 5, .8);
-	}
-
-	.answers-list li:nth-of-type(3), .answers-list li:nth-of-type(4), .stats-list li:nth-of-type(3), .stats-list li:nth-of-type(4) {
-		border-bottom: none;
 	}
 
 	.answers-list li:hover {

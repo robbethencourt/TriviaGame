@@ -33,7 +33,7 @@ $(document).ready(function(){
 				}]
 			}, {
 			// Question 2 [1] 
-			question: '"A Trip to the Moon" is known for having a satyrical tone that exagerates nineteenth-century science. Melies does not attempt to depict this journey to our moon in any realistic terms. Knowing that, what device is used to propel the astronomers to the moon?',
+			question: '"A Trip to the Moon" is known for having a satirical tone that exaggerates nineteenth-century science. Melies does not attempt to depict the journey to the moon in any realistic terms. Knowing that, what device is used to propel the astronomers to the moon?',
 			answers: [{
 					answer: 'slingshot',
 					correct: false
@@ -49,7 +49,7 @@ $(document).ready(function(){
 				}]
 			}, {
 			// Question 3 [2]
-			question: 'The "vocabulary" for narrative films began to be established after "A Trip To The Moon" was made in 1902. It is said that the film more closely resemble a theatrical production becuase of the highly styled mise en scene and what filmic technique?',
+			question: 'The "vocabulary" for narrative films was established after "A Trip To The Moon" was made in 1902. It is said that the film more closely resemble a theatrical production because of the highly styled mise en scene and what filmic technique?',
 			answers: [{
 					answer: 'juxtaposition of shots',
 					correct: false
@@ -57,7 +57,7 @@ $(document).ready(function(){
 					answer: 'stationary camera',
 					correct: true
 				}, {
-					answer: 'varried camera angles',
+					answer: 'varied camera angles',
 					correct: false
 				}, {
 					answer: 'special effects',
@@ -65,9 +65,9 @@ $(document).ready(function(){
 				}]
 			}, {
 			// Question 4 [3]
-			question: 'Like many silent films of its era, "A Trip To The Moon" was almost lost forever. It took unitl 1997 to piece together the entire film from various prints discoveed throughout the 20th century. What end sequence was missing from earlier versions?',
+			question: 'Like many silent films of its era, "A Trip To The Moon" was almost lost forever. It took until 1997 to piece together the entire film from various prints discovered throughout the 20th century. What end sequence was missing from earlier versions?',
 			answers: [{
-					answer: 'Celebration',
+					answer: 'The Celebration',
 					correct: true
 				}, {
 					answer: 'Revival of the main astronaut',
@@ -81,7 +81,7 @@ $(document).ready(function(){
 				}]
 			}, {
 			// Question 5 [4]
-			question: 'Silent films were often given color by applying dyes to parts of the imagae. An originally colorized version of "A Trip To The Moon" was discoverd at the Filmoteca de Catalunya in Barcelona in what year?',
+			question: 'Silent films were often given color by applying dyes to parts of the image. An originally colorized version of "A Trip To The Moon" was discovered at the Filmoteca de Catalunya in Barcelona in what year?',
 			answers: [{
 					answer: '1922',
 					correct: false
@@ -103,14 +103,13 @@ $(document).ready(function(){
 		question_timer_display: $('#question-timer-display'), // p
 		q_display: $('#q-display'), // p
 		correct_incorrect_display: $('#correct-incorrect-display'), // p
-		//answers_li: $('.answers-li'),
-		answers_ul: $('#answers-ul'),
+		answers_ul: $('#answers-ul'), // ul
 		answers_li: [],
 		answers_to_show: 4,
 		answer_timer: 3,
-		end_game_screen: $('#end-game-screen'),
-		all_q_correct: $('#all-q-correct'),
-		restart_game: $('#restart-game'),
+		end_game_screen: $('#end-game-screen'), // div
+		all_q_correct: $('#all-q-correct'), // p
+		restart_game: $('#restart-game'), // button
 
 		addAnswersLi: function () {
 
@@ -126,23 +125,23 @@ $(document).ready(function(){
 				// push the li elements created into the array
 				this.answers_li.push(li_added);
 				
-				// append the created li elements wiht added classes and data-index to the ul element
+				// append the created li elements with added classes and data-index to the ul element
 				$(this.answers_ul).append(li_added);
 
 			} // end for loop
 
-		},
+		}, // end addAnswersLi()
 
 		fadeInGameScreen: function () {
 
 			// fade in the game screen
 			$(this.game_screen).fadeIn(500);
 
-		},
+		}, // end fadeInGameScreen()
 
 		startGame: function (color) {
 
-			// if the player chooses to play in black and white the restart button will pass the 'b-and-w' string and we will also check that the 'b-and-w' class ins't already applied to the animated-bg div
+			// if the player chooses to play in black and white the restart button will pass the 'b-and-w' string and we will also check that the 'b-and-w' class isn't already applied to the animated-bg div
 			if (color === 'b-and-w' && !(this.animated_bg.hasClass('b-and-w'))) {
 
 				// add the black and white class to the animated-bg div
@@ -159,11 +158,8 @@ $(document).ready(function(){
 			this.current_question = 0;
 			this.correct_answer = null;
 
+			// remove all the animated classes added throughout the game
 			this.animated_bg.removeClass('animate-bg-1 animate-bg-2 animate-bg-3 animate-bg-4 animate-bg-5');
-
-			//this.animated_bg.animate({
-			//	bottom: '0%'
-			//}, 1000 * 5);
 
 			// fade out the start game screen
 			$(this.start_game_screen).fadeOut(500);
@@ -182,7 +178,7 @@ $(document).ready(function(){
 				triviaGame.displayQandA();
 			}, 1000);
 			
-		},
+		}, // end startGame()
 
 		qTimer: null,
 		aTimer: null,
@@ -219,7 +215,7 @@ $(document).ready(function(){
 
 			} // end if else
 
-		},
+		}, // end timer()
 
 		count: function (time_to_further_pass) {
 
@@ -238,7 +234,7 @@ $(document).ready(function(){
 					// ...stop the timer
 					clearInterval(this.qTimer);
 
-					// call the guess function and pass it an icorrect parameter
+					// call the guess function and pass it an incorrect parameter
 					this.guess(5);
 
 					// increment the unanswered key by 1
@@ -279,12 +275,11 @@ $(document).ready(function(){
 
 					}, 1000 * 3);
 
-
 				} // end if
 
 			} // end if else
 			
-		},
+		}, // end count()
 
 		displayQandA: function () {
 			
@@ -310,10 +305,10 @@ $(document).ready(function(){
 			// start the question countdown
 			triviaGame.timer("question");
 
-			// increment the current question so that the following quesiton is correctly displayed to the screen when this function is run again
+			// increment the current question so that the following question is correctly displayed to the screen when this function is run again
 			this.current_question++;
 
-		},
+		}, // end displayQandA()
 
 		guess: function (data_index) {
 
@@ -332,24 +327,19 @@ $(document).ready(function(){
 				// display a correct message
 				this.correct_incorrect_display.html("Correct");
 
-				// animate the animate-bg div down 20% of the way. Using setTimeout here so tha the background won't animate until the game screen has faded out.
+				// animate the animate-bg div down 20% of the way. Using setTimeout here so that the background won't animate until the game screen has faded out.
 				setTimeout(function () {
 
-					// store the amout of time to animate in a variable so it can be increased each time a correct answer is guessed. If not, then the background will not move after the first correct guess as I'll be updating the bottom by the same amount
+					// store the amount of time to animate in a variable so it can be increased each time a correct answer is guessed. If not, then the background will not move after the first correct guess as I'll be updating the bottom by the same amount
 					var amount_to_animate = triviaGame.animated_bg_bottom + 1;
 
 					// update the animate_bg_bottom to the amount to animate so I'm updating it correctly each time
 					triviaGame.animated_bg_bottom = amount_to_animate;
 
-
-
+					// add the next class to animate the animate-bg div through css transition
 					$(triviaGame.animated_bg).addClass('animate-bg-' + amount_to_animate);
 
-					//triviaGame.animated_bg.animate({
-					//	bottom: '-' + amount_to_animate + 'px'
-					//}, 1000 * 5);
-
-				}, 1000 * 3);
+				}, 1000 * 3); // end setTimeout
 
 			// the player did not guess correctly
 			} else {
@@ -363,7 +353,7 @@ $(document).ready(function(){
 					// ...increment the incorrect answers key by 1
 					this.incorrect_answers++;
 
-				}
+				} // end if
 
 			} // end if else
 
@@ -388,7 +378,7 @@ $(document).ready(function(){
 
 			} // end if
 			
-		},
+		}, // end guess()
 
 		displayEndGameScreen: function () {
 
@@ -421,7 +411,7 @@ $(document).ready(function(){
 			// fade in the end game screen
 			$(this.end_game_screen).fadeIn(500);
 
-		},
+		}, // end displayEndGameScreen()
 
 		restart_buttons: $('#restart-buttons'),
 		color_restart_div: $('<div class="col-xs-6"></div>'),
@@ -449,24 +439,24 @@ $(document).ready(function(){
 			// append the color youtube link to the color youtube buttons div
 			this.color_youtube_div.append(this.color_youtube);
 
-		},
+		}, // end colorBackgroundButtons()
 
 		colorBackground: function () {
 			
-			// if the black and white calss is applied to the animated-bg div
+			// if the black and white class is applied to the animated-bg div
 			if (this.animated_bg.hasClass('b-and-w')) {
 
 				// remove the class
 				this.animated_bg.removeClass('b-and-w');
 
-			}
+			} // end if
 
 			// restart the game
 			this.startGame();
 
-		}
+		} // end colorBackground()
 
-	}
+	} // end triviaGame object
 
 	// add the list elements to the screen once the page loads
 	triviaGame.addAnswersLi();
@@ -479,9 +469,7 @@ $(document).ready(function(){
 
 	});
 
-
-	console.log(triviaGame.answers_li);
-	// when the player presses one of the answers on screen
+	// when the player presses one of the answers on screen. I had to call the click event on the ul as the li elements were added dynamically once the page loads.
 	triviaGame.answers_ul.on('click', '.answers-li', function () {
 
 		// pass the clicked element's data-index value to the guess function. I need to get the attribute here instead of passing it to the function and then running getAttribute because if there's no guess I'll be evaluating no element and the getAttribute will cause my scripts to return and TypeError which will break everything and make the player sad that they can't continue playing my wonderful game
@@ -493,7 +481,7 @@ $(document).ready(function(){
 	triviaGame.restart_game.on('click', function () {
 
 		// calling the start game to restart the game without the need for the title screen and going directly to the first question
-		// we're passing the 'b-and-w' string so we know that the player has choosen to play without color and we can pass that to the startGame function and it can then add the b-and-w class
+		// we're passing the 'b-and-w' string so we know that the player has chosen to play without color and we can pass that to the startGame function and it can then add the b-and-w class
 		triviaGame.startGame('b-and-w');
 
 	});

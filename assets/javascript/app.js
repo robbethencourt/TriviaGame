@@ -282,6 +282,9 @@ $(document).ready(function(){
 		}, // end count()
 
 		displayQandA: function () {
+
+			// update the question timer display to 30 so that it doesn't show what the last question ended on and then jump to 29.
+			this.question_timer_display.html('30');
 			
 			// display the current question to the screen
 			this.q_display.html(this.qs_and_as[this.current_question].question);
@@ -394,7 +397,7 @@ $(document).ready(function(){
 			if (this.correct_answers === 5) {
 
 				// ...display a congratulatory message for getting all 5 questions correct
-				$(this.all_q_correct).html("Congratulations! You got all 5 questions correct");
+				$(this.all_q_correct).html("Congratulations! You got all 5 questions correct. You can now play in color.");
 
 				// update the wins by one
 				this.wins++;
